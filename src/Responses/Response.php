@@ -17,4 +17,9 @@ class Response
     {
         return new ErrorResponse($msg);
     }
+
+    public static function order($order)
+    {
+        return new OrderResponse($order);
+    }
 }

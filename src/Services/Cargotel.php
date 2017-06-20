@@ -43,6 +43,15 @@ class Cargotel
         ]);
     }
 
+    public function getOrder($order_id)
+    {
+        $order_obj = $this->makeSoapCall('LookupOrder', [
+            'order' => [$order_id]
+        ]);
+
+        return Response::order((array) $order_obj);
+    }
+
     protected function makeSoapCall($method, $params)
     {
         $client = new SoapClient(null, [
