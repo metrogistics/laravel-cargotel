@@ -1,5 +1,5 @@
 {
-    "name": "pstephan1187/laravel-cargotel",
+    "name": "metrogistics/laravel-cargotel",
     "description": "A package that provides easy HTTP requests to Cargotel.",
     "autoload": {
         "psr-4": {
@@ -13,7 +13,7 @@
     "authors": [
         {
             "name": "Patrick Stephan",
-            "email": "pstephan1187@gmail.com"
+            "email": "p.stephan@metrogistics.com"
         }
     ]
 }
