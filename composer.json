@@ -1,0 +1,18 @@
+{
+    "name": "pstephan1187/laravel-cargotel",
+    "description": "A package that provides easy HTTP requests to Cargotel.",
+    "autoload": {
+        "psr-4": {
+            "Cargotel": "src/"
+        }
+    },
+    "require": {
+        "pstephan1187/laravel-guzzler": "^1.0"
+    },
+    "authors": [
+        {
+            "name": "Patrick Stephan",
+            "email": "pstephan1187@gmail.com"
+        }
+    ]
+}
