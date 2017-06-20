@@ -1,7 +1,9 @@
 <?php
 
 namespace Cargotel\Services;
+
 use Carbon\Carbon;
+use Cargotel\Responses\Response;
 
 class Cargotel
 {
@@ -41,16 +43,30 @@ class Cargotel
 
     protected function makeJsonRpcCall($method, $params, $http_method = 'POST')
     {
-        return $this->client->request(
-            $http_method,
-            $this->config['services_url'],
-            [
-                'body' => json_encode([
-                    'method' => $method,
-                    'params' => [$params]
-                ])
-            ]
-        );
+        try{
+            $http_response = $this->client->request(
+                $http_method,
+                $this->config['services_url'],
+                [
+                    'body' => json_encode([
+                        'method' => $method,
+                        'params' => [$params]
+                    ])
+                ]
+            );
+        }catch(\Exception $e){
+            $error = $e->getResponse()->getBody()->getContents();
+
+            return Response::error($error);
+        }
+
+        $json_response = json_decode($http_response->getBody()->getContents());
+
+        if($json_response->result->success){
+            return Response::success($json_response->result->msg);
+        }
+
+        return Response::error($json_response->error);
     }
 }
 
