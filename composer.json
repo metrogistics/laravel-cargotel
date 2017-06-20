@@ -7,7 +7,8 @@
         }
     },
     "require": {
-        "pstephan1187/laravel-guzzler": "^1.0"
+        "pstephan1187/laravel-guzzler": "^1.0",
+        "nesbot/carbon": "^1.22"
     },
     "authors": [
         {
