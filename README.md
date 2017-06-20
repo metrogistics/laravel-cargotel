@@ -58,3 +58,11 @@ parsable by the `Carbon::parse()` method.
 ```
 setOrderDueDate($order_id, $datetime, $timezone = 'UTC')
 ```
+
+### `getOrder`
+
+Retrieves the given order.
+
+```
+getOrder($order_id)
+```
