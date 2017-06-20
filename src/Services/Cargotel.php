@@ -49,6 +49,10 @@ class Cargotel
             'order' => [$order_id]
         ]);
 
+        if($order_obj === null){
+            return Response::error('Order not found');
+        }
+
         return Response::order((array) $order_obj);
     }
 
