@@ -2,6 +2,8 @@
 
 namespace Cargotel\Services;
 
+use SoapParam;
+use SoapClient;
 use Carbon\Carbon;
 use Cargotel\Responses\Response;
 
@@ -39,6 +41,25 @@ class Cargotel
             'date' => Carbon::parse($datetime)->toIso8601String(),
             'time_zone' => $timezone
         ]);
+    }
+
+    protected function makeSoapCall($method, $params)
+    {
+        $client = new SoapClient(null, [
+                'location' => $this->config['base_uri'].'/'.$this->config['services_url'],
+                'uri' => $this->config['base_uri'].'/cargotel/'.$method,
+                'login' => $this->config['username'],
+                'password' => $this->config['password'],
+            ]
+        );
+
+        $soap_params = [];
+
+        foreach($params as $key => $value){
+            $soap_params[] = new SoapParam($value, $key);
+        }
+
+        return call_user_func_array([$client, $method], $soap_params);
     }
 
     protected function makeJsonRpcCall($method, $params, $http_method = 'POST')
