@@ -2,44 +2,47 @@
 
 namespace Cargotel\Representations;
 
+use Cargotel\ValueTypes\DateType;
+use Cargotel\ValueTypes\StringType;
+use Cargotel\ValueTypes\VehicleType;
+use Cargotel\ValueTypes\BooleanType;
+use Cargotel\ValueTypes\NumericType;
+use Cargotel\ValueTypes\LocationType;
+
 class Order extends Representation
 {
-    protected $attributes = [
-        "status" => "Inactive",
-        "customer_name" => "",
-        "carrier_name" => "",
-        "driver_pay" => 0,
-        "due_date" => null,
-        "vehicles" => [],
-        "order_id" => null,
-        "auction_aun_comments" => "",
-        "delivered_pickup_date" => null,
-        "price" => 0,
-        "eta" => null,
-        "scheduled_pickup_date" => null,
-        "miles" => 0,
-        "driver_name" => "",
-        "stops" => 0,
-        "age" => 0,
-        "credit" => null,
-        "rate" => 0,
-        "central_dispatch_shipment_available_date" => null,
-        "order_type" => "Order",
-        "no_fee_cc" => false,
-        "dispatched_date" => null,
-        "on_hold_date" => null,
-        "origin" => null,
-        "destination" => null,
-        "bill_to" => null,
-        "carrier_pay" => 0,
-        "actual_pickup_date" => null,
-        "disp_cmt" => "",
-    ];
-
-    public function __construct($order)
+    public function getValueTypes()
     {
-        foreach($this->attributes as $key => $value){
-            $this->attributes[$key] = array_get($order, $key, $value);
-        }
+        return [
+            "status"                                   => StringType::default("Inactive"),
+            "customer_name"                            => StringType::default(""),
+            "carrier_name"                             => StringType::default(""),
+            "driver_pay"                               => NumericType::default(0),
+            "due_date"                                 => DateType::default(null),
+            "vehicles"                                 => VehicleType::default(null),
+            "order_id"                                 => NumericType::default(0),
+            "auction_aun_comments"                     => StringType::default(""),
+            "delivered_pickup_date"                    => DateType::default(null),
+            "price"                                    => NumericType::default(0),
+            "eta"                                      => DateType::default(null),
+            "scheduled_pickup_date"                    => DateType::default(null),
+            "miles"                                    => NumericType::default(0),
+            "driver_name"                              => StringType::default(""),
+            "stops"                                    => NumericType::default(0),
+            "age"                                      => NumericType::default(0),
+            "credit"                                   => StringType::default(""),
+            "rate"                                     => NumericType::default(0),
+            "central_dispatch_shipment_available_date" => DateType::default(null),
+            "order_type"                               => StringType::default("Order"),
+            "no_fee_cc"                                => BooleanType::default(false),
+            "dispatched_date"                          => DateType::default(null),
+            "on_hold_date"                             => DateType::default(null),
+            "origin"                                   => LocationType::default(null),
+            "destination"                              => LocationType::default(null),
+            "bill_to"                                  => LocationType::default(null),
+            "carrier_pay"                              => NumericType::default(0),
+            "actual_pickup_date"                       => DateType::default(null),
+            "disp_cmt"                                 => StringType::default(""),
+        ];
     }
 }

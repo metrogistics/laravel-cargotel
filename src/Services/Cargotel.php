@@ -43,11 +43,50 @@ class Cargotel
         ]);
     }
 
+    public function createOrder($id)
+    {
+        $response = $this->client->request(
+            'POST',
+            'services/REST/',
+            [
+                'json' => [
+                    'Work Order #' => $id,
+                    'Customer ID' => 241697,
+                    'Bill-To ID' => 241697,
+                    'Shipper ID' => 65136,
+                    'Origin ID' => 188690,
+                    'Destination ID' => 263960,
+                    'Carrier ID' => 65141,
+                ]
+            ]
+        );
+
+        $json_response = json_decode($response->getBody()->getContents());
+
+        if(! $json_response->Success){
+            return Response::error($json_response->ERROR);
+        }
+
+        dd();
+
+        if(!$order_obj['success']){
+
+        }
+
+        // if($order_obj === null){
+        //     return Response::error('Order not found');
+        // }
+        //
+        // return Response::order((array) $order_obj);
+    }
+
     public function getOrder($order_id)
     {
         $order_obj = $this->makeSoapCall('LookupOrder', [
             'order' => [$order_id]
         ]);
+
+        dump($order_obj);
 
         if($order_obj === null){
             return Response::error('Order not found');

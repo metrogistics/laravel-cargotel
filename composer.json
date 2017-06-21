@@ -15,5 +15,9 @@
             "name": "Patrick Stephan",
             "email": "p.stephan@metrogistics.com"
         }
-    ]
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^6.2",
+        "orchestra/testbench": "^3.4"
+    }
 }
